@@ -41,7 +41,9 @@ public class BoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;  // 레코드 한줄
 		
-		String sql = "SELECT iboard, title, regdt FROM t_board";
+		String sql = "SELECT iboard, title, regdt FROM t_board"
+				+ " ORDER BY iboard DESC ";
+		
 		
 		try {
 			con = DBUtils.getCon();
@@ -109,5 +111,51 @@ public class BoardDAO {
 		}
 		
 		return null;
+	}
+	
+	public static int delBoard(int iboard) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String sql = "DELETE FROM t_board WHERE iboard = ?";
+		
+		try {
+			con = DBUtils.getCon();
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1,iboard); 
+			return ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps);
+		}
+		
+		return 0;
+	}
+	
+	public static int updBoard(BoardVO3 iboard) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String sql = "UPDATE t_board SET title = ? , ctnt = ? WHERE iboard = ?";
+		
+		try {
+			con = DBUtils.getCon();
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, iboard.getTitle());
+			ps.setString(2, iboard.getContent());
+			ps.setInt(3, iboard.getIboard());
+			return ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps);
+		}
+		
+		return 0;
 	}
 }
