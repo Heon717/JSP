@@ -142,4 +142,26 @@ public class BoardDAO { // 셀렉트문 빼고는 ResultSet 필요가없음 ( �
 		
 		return 0;
 	}
+	
+	public static void memberJoin(BoardVO vo) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = " INSERT INTO Member_board ( id , pass1 , pass2 ) VALUES ( ? , ? , ? ) ";
+		
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getPassword1());
+			ps.setString(3, vo.getPassword2());
+			
+			ps.executeUpdate();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBU.close(con, ps);
+		}
+	}
 }
