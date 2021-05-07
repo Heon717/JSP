@@ -12,24 +12,26 @@
 		<form action="/join" method="post">
 			<h1>회원가입</h1>
 	
-			<div><label>아이디 : <input type="text" name="id"></label></div>
+			<div><label>아이디 : <input type="text" name="id" id="id"></label></div>
 		
 			<div><label>비밀번호 : <input type="text" name="password1" id="pw1"></label></div>
 		
 			<div><label>비밀번호확인 : <input type="text" name="password2" id="pw2"></label></div>
 		
-			<button onclick="cba()">가입하기</button>
+			<button onclick="joinfnc()">가입하기</button>
 		</form>
 	</div>
 	
 	<script>
-		function cba() {
+		function joinfnc() {
 				if(pw1.value !== pw2.value) {
 					alert("비밀번호가 다릅니다.");
-				} else {
+				} else if (id.value=="" || pw1.value == "" || pw2.value == "") {
+					alert("아이디와 비밀번호를 입력해주세요.");
+				}  else {
 					alert("회원가입이 완료되었습니다.");
-					return true;
 				}
+				
 		}
 	</script>
 </body>

@@ -24,8 +24,8 @@ public class JoinServlet extends HttpServlet {
 		String pass1 = request.getParameter("password1");
 		String pass2 = request.getParameter("password2");
 
-		if (!pass1.equals(pass2)) {
-			response.sendRedirect("/list");
+		if (!pass1.equals(pass2) || id=="" || pass1 == "" || pass2 == "") {
+			response.sendRedirect("/join");
 		} else {
 			BoardVO vo = new BoardVO();
 			vo.setId(id);
@@ -34,7 +34,6 @@ public class JoinServlet extends HttpServlet {
 			BoardDAO.memberJoin(vo);
 			response.sendRedirect("/list");
 		}
-
 	}
 
 }

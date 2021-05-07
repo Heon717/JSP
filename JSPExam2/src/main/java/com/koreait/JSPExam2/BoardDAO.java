@@ -67,7 +67,6 @@ public class BoardDAO { // 셀렉트문 빼고는 ResultSet 필요가없음 ( �
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
 		String sql = " SELECT * FROM a_board WHERE num = ? ";
 		
 	
@@ -163,5 +162,34 @@ public class BoardDAO { // 셀렉트문 빼고는 ResultSet 필요가없음 ( �
 		} finally {
 			DBU.close(con, ps);
 		}
+	}
+	
+	public int UserLoginCheck(String id, String pw) { // 회원존재 유무확인
+		int check = -1;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = " SELECT * FROM Member_board WHERE id = ? "; 
+		
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getString("pass1").equals("pass2")) {
+					check = 1;
+				} else {
+					check = 0; 
+				}
+			}
+		} catch (Exception e) {
+				e.printStackTrace();
+		} finally {
+			DBU.close(con, ps, rs);
+		}
+		
+		return check;
 	}
 }
