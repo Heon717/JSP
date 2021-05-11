@@ -164,7 +164,7 @@ public class BoardDAO { // 셀렉트문 빼고는 ResultSet 필요가없음 ( �
 		}
 	}
 	
-	public int UserLoginCheck(String id, String pw) { // 회원존재 유무확인
+	public static int UserLoginCheck(String id, String pw) { // 회원존재 유무확인
 		int check = -1;
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -178,7 +178,7 @@ public class BoardDAO { // 셀렉트문 빼고는 ResultSet 필요가없음 ( �
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString("pass1").equals("pass2")) {
+				if(rs.getString(2).equals(pw)) {
 					check = 1;
 				} else {
 					check = 0; 

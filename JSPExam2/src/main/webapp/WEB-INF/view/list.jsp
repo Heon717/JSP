@@ -64,6 +64,10 @@
 	#tb_list{
 		padding-left: 600px;
 	}
+	
+	#out_btn {
+		display: none;
+	}
 </style>
 <title>리스트</title>
 </head>
@@ -71,8 +75,10 @@
 
 	<div id="header">
 		<div id="kbs">
+			<a href="#">${user}님 반갑습니다!</a>
 			<a href="/join"><button>회원가입</button></a>
-			<a href="/login"><button>로그인</button></a>
+			<a href="/login"><button id="btn" onclick="btn()">로그인</button></a>
+
 			<select>
 				<option>한국어</option>
 				<option>중국어</option>
@@ -104,6 +110,10 @@
 	<script>
 		function mouseclick(num) {
 			location.href = "/detail?num="+num;
+		}
+		
+		function btn() {
+			document.getElementById('btn').value='로그아웃';
 		}
 	</script>
 </body>

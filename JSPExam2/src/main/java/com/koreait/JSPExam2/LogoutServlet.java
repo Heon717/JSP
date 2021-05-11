@@ -7,19 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/detail")
-public class BoardDetailServlet extends HttpServlet {
+
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("num");
-		int intnum = Integer.parseInt(num);
+		request.setAttribute("uesr","");
 		
-		BoardVO li = BoardDAO.selectBoard(intnum);
-		request.setAttribute("list", li);
-		MyUtils.openJSP("detail", request, response);
-
+		String jsp = "WEB-INF/view/list.jsp";
+		request.getRequestDispatcher(jsp).forward(request, response);
 	}
-
 
 }
