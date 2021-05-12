@@ -4,179 +4,74 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	body{
-		background-image: url('../../images/sea.jpg');
-	}
-
-	#wrap{
-	background:linear-gradient(to bottom, #4b79a1, #283e51);
-	position: absolute;
-	top:20%;
-	left: 40%;
-	box-sizing: border-box;
-	}
-	
-	img {
-		margin-left: 100px;
-	}
-
-	input {
-	width: 460px;
-	height : 48px;
-	margin: 10px;
-	}
-	
-	input:hover{
-	 cursor: pointer;
-	}
-
-	#button {
-	margin: 15px;
-	width:460px;
-	height:56px;
-	border: 1px solid skyblue;
-	background-color:rgba(0,0,0,0);
-	color: skyblue;
-	padding:10px;
-	border-radius: 6px;
-	cursor: pointer;
-	}
-	
-	#button:hover{
-	background-color:skyblue;
-	color:white;
-	}
-	
-	#button:active{
-	background-color: #82b5f0 ;
-	}
-	
-	.errMsg {
-		color:white;
-		font-size: 16px;
-		text-align: center;
-		padding:20px;
-	}
-	
-	#line{
-	background-color: gray;
-	width: 460px;
-	height: 1px;
-	margin-left: 15px;
-	}
-	
-	#login_on{
-		margin-bottom: 10px;
-	}
-	
-	.cls1{
-	color: white;
-	margin:15px;
-	}
-	
-	.cls2{
-	color: white;
-	float: right;
-	margin-right: 24px;
-	}
-	
-	.easy_login{
-		margin-top:30px;
-		margin-bottom:20px;
-		font-weight: bold;
-		font-size: 24px;
-		color:white;
-		text-align: center;
-	}
-	.login_box{
-		display:inline-block;
-		border: 1px solid #03C75A;
-		background-color: white;
-		font-weight: bold;
-		margin:2px;
-		width:226px;
-		height: 56px;
-		box-sizing: border-box;
-		padding-top:15px;
-		text-align: center;
-	}
-	
-	.box_left{
-		margin-left: 18px;
-	}
-	
-	.box_right{
-		margin-right: 20px;
-	}
-	
-	.login_box:hover {
-		cursor: pointer;
-	}
-	
-	.id_pw_join{
-		font-size:14px;
-		color: gray;
-		margin-top:16px;
-		margin-left: 120px;
-	}
-	.ipj:hover{
-		cursor:pointer;
-	}
-	
-	.Pillar{
-		display:inline-block;
-		width:1px;
-		height:11px;
-		background: gray;
-	}
-</style>
-
+<link rel="stylesheet" type="text/css" href="../../css/login.css">
 <title>로그인</title>
 </head>
 <body>
 	<div id= "wrap">
+		<img id = "main_logo" src="../../images/blizzard.jpg">
 		<div class="errMsg">${err}</div>
-		<img src="../../images/blizzard.jpg">
 		<div>
 			<form action="login" method="post">
-				<div><input id ="idpw" type="text" name="uid" placeholder="아이디" onclick="solid()"></div>
-				<div><input id ="idpw" type="password" name="upw" placeholder="비밀번호" onclick="solid()"></div>
-				<div><input id="button" type="submit" value="로그인"></div>
+				<div><input id ="id" type="text" name="uid" placeholder="아이디"></div>
+				<div><input id ="pw" type="password" name="upw" placeholder="비밀번호"></div>
+				<div><input id="btn1" type="submit" value="로그인"></div>
 			</form>
 		</div>
-		<div>
-			<a href="join"><input id="button" type="button" value="회원가입"></a>
-		</div>
-		<div id="login_on">
-			<span class="cls1">로그인 상태 유지</span>
-			<span class="cls2">ip 보안 ON</span>
-		</div>
-		<div id = "line"></div>
-		<div>
-			<div class="easy_login">더욱 간편한 로그인</div>
-			<span class="login_box box_left">QR코드 로그인</span>
-			<span class="login_box box_right">일회용 번호 로그인</span>
-			<div class="id_pw_join">
-				<span class="ipj">아이디 찾기</span>
-				<span class="Pillar"></span>
-				<span class="ipj">비밀번호 찾기</span>
-				<span class="Pillar"></span>
-				<span class="ipj">회원가입</span>
+		<div id = "content">
+			<div >
+				<span class = "line_left"></span>
+				<span class = "line_text">또는</span>
+				<span class = "line_right"></span>
+			</div>
+			<span id = "leng_logo">
+				<a href="#" onclick="leng_ko()"><img class = "leng_logo_1" src="../../images/ico_kr.png"></a>
+				<a href="#" onclick="leng_us()"><img class = "leng_logo_2" src="../../images/ico_us.png"></a>
+				<a href="#" onclick="leng_cn()"><img class = "leng_logo_3" src="../../images/ico_cn.png"></a>
+			</span>
+			<div>
+				<a href="join"><input id="btn2" type="button" value="블리자드 무료 회원 가입"></a>
+			</div>
+			<div id = "text_id">
+				<a href="#">로그인 문제 해결</a>
+			</div>
+			<div id = "text_id">
+				<a href="#">탈퇴한 계정 복구</a>
 			</div>
 		</div>
-		<div>
-			이미지
-		</div>
-		<footer>
-			주소
-		</footer>
 	</div>
 	
-	<script>
-		function solid() {
-			document.getElementId('idpw').style.border = "1px solid #03C75A";
+	<script type="text/javascript">
+		function leng_ko() {
+			document.getElementById('id').placeholder = "아이디";
+			document.getElementById('pw').placeholder = "비밀번호";
+			document.querySelector('#button1').value = "로그인";
+			document.getElementByclassName('line_text').innerHTML = "또는";
+			document.querySelector('#button2').value = "블리자드 무료 회원 가입";
+			document.getElementById('button').value = "로그인 문제 해결";
+			document.getElementById('button').value = "탈퇴한 계정 복구";
+		}
+		
+		function leng_us() {
+			document.getElementById('id').placeholder = "ID";
+			document.getElementById('pw').placeholder = "PASSWORD";
+			document.querySelector('#button1').value = "Login";
+			document.getElementByclassName('line_text').innerHTML = "OR";
+			document.querySelector('#button2').value = "Blizzard Free Membership";
+			document.getElementById('button').value = "Troubleshooting Login";
+			document.getElementById('button').value = "Recover accounts you left";
+		}
+		
+		function leng_cn() {
+			document.getElementById('id').placeholder = "用戶名";
+			document.getElementById('pw').placeholder = "密碼";
+			document.querySelector('#button1').value = "登錄";
+			document.getElementByclassName('line_text').innerHTML = "或";
+			document.querySelector('#button2').value = "暴雪免費加入會員";
+			document.getElementById('button').value = "解決登錄問題";
+			document.getElementById('button').value = "恢復退出賬戶";
 		}
 	</script>
+
 </body>
 </html>

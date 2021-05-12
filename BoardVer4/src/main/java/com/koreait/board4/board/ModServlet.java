@@ -9,36 +9,45 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.koreait.board4.MyUtils;
-import com.koreait.board4.user.UserDAO;
 import com.koreait.board4.user.UserVO;
 
-@WebServlet("/board/write")
-public class WriteServlet extends HttpServlet {
+
+@WebServlet("/board/mod")
+public class ModServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
+       
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MyUtils.openJSP("board/write", request, response);
+		int iboard = MyUtils.getParamInt("iboard", request);
+		
+		BoardVO li = BoardDAO.selBoard(iboard);
+		
+		int i = MyUtils.getLoginUserPK(request);
+		if (i != li.getIuser() ) {
+			response.sendRedirect("board/list");
+			return ;
+		}
+		
+		request.setAttribute("list",li );
+		
+		MyUtils.openJSP("board/mod", request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int iboard = MyUtils.getParamInt("iboard", request);
 		String title = request.getParameter("title");
 		String ctnt = request.getParameter("ctnt");
-		/*
-		HttpSession hs = request.getSession();
-		UserVO loginUser = (UserVO) hs.getAttribute("loginUser");
-		int iuser = loginUser.getIuser();
-		*/
-		
 		int iuser = MyUtils.getLoginUserPK(request);
 		
-		BoardVO bvo = new BoardVO();
-		bvo.setTitle(title);
-		bvo.setCtnt(ctnt);
-		bvo.setIuser(iuser);
+		BoardVO vo = new BoardVO();
+		vo.setIboard(iboard);
+		vo.setTitle(title);
+		vo.setCtnt(ctnt);
+		vo.setIuser(iuser);
 		
-		BoardDAO.insBoard(bvo);
+		BoardDAO.updBoard(vo);
 		
-		response.sendRedirect("list");
+		response.sendRedirect("detail?iboard="+iboard);
 	}
 
 }

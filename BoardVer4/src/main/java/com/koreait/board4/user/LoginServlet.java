@@ -15,9 +15,9 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession hs = request.getSession();
-		UserVO loginUser = (UserVO) hs.getAttribute("loginUser");
-		if(loginUser != null) {
+		HttpSession hs = request.getSession(); // session 의 주소값
+		UserVO loginUser = (UserVO) hs.getAttribute("loginUser"); // 있으면 login
+		if(loginUser != null) { // 로그인상태
 			response.sendRedirect("/board/list");
 			return;
 		}

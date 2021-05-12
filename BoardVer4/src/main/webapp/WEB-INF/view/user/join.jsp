@@ -4,50 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	
-
-	#form{
-	background:linear-gradient(to bottom, #4b79a1, #283e51);
-	position: absolute;
-	top:20%;
-	left: 40%;
-	box-sizing: border-box;
-	}
-
-	form>div>input {
-	width: 460px;
-	height : 48px;
-	margin: 10px;
-	}
-
-	#button {
-	margin-left: 20px;
-	margin: 15px;
-	width:460px;
-	height:56px;
-	border: 1px solid skyblue;
-	background-color:rgba(0,0,0,0);
-	color: skyblue;
-	padding:10px;
-	border-radius: 6px;
-	cursor: pointer;
-	}
-	
-	#button:hover{
-	background-color:skyblue;
-	color:white;
-	}
-	
-	#button:active{
-	background-color: #82b5f0 ;
-	}
-	
-	#radio{
-		color:white;
-		margin-left: 20px;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="../../css/join.css">
 <title>회원가입</title>
 </head>
 <body>

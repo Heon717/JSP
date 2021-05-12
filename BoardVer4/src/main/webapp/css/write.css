@@ -1,0 +1,43 @@
+
+	body{
+	background-image: url('../../images/sea.jpg');
+	}
+
+	#wrap{
+	background:linear-gradient(to bottom, #4b79a1, #283e51);
+	position: absolute;
+	top:20%;
+	left: 20%;
+	box-sizing: border-box;
+	}
+
+	input, textarea {
+	width: 460px;
+	height : 48px;
+	margin: 10px;
+	}
+	
+	input:hover{
+	cursor: pointer;
+	}
+
+	#button {
+	margin: 15px;
+	width:460px;
+	height:56px;
+	border: 1px solid skyblue;
+	background-color:rgba(0,0,0,0);
+	color: skyblue;
+	padding:10px;
+	border-radius: 6px;
+	cursor: pointer;
+	}
+	
+	#button:hover{
+	background-color:skyblue;
+	color:white;
+	}
+	
+	#button:active{
+	background-color: #82b5f0 ;
+	}
