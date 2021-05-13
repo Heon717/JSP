@@ -41,7 +41,7 @@
 	cursor: pointer;
 	}
 	
-	#btn1:hove , #btn2:hover{
+	#btn1:hover{
 	background-color:skyblue;
 	color:white;
 	}

@@ -45,9 +45,9 @@
 		function leng_ko() {
 			document.getElementById('id').placeholder = "아이디";
 			document.getElementById('pw').placeholder = "비밀번호";
-			document.querySelector('#button1').value = "로그인";
-			document.getElementByclassName('line_text').innerHTML = "또는";
-			document.querySelector('#button2').value = "블리자드 무료 회원 가입";
+			document.querySelector('#btn1').value = "로그인";
+			document.getElementByclassName('line_text').innerText = "또는";
+			document.querySelector('#btn2').value = "블리자드 무료 회원 가입";
 			document.getElementById('button').value = "로그인 문제 해결";
 			document.getElementById('button').value = "탈퇴한 계정 복구";
 		}
@@ -55,19 +55,19 @@
 		function leng_us() {
 			document.getElementById('id').placeholder = "ID";
 			document.getElementById('pw').placeholder = "PASSWORD";
-			document.querySelector('#button1').value = "Login";
-			document.getElementByclassName('line_text').innerHTML = "OR";
-			document.querySelector('#button2').value = "Blizzard Free Membership";
-			document.getElementById('button').value = "Troubleshooting Login";
+			document.querySelector('#btn1').value = "Login";
+			document.getElementByclassName('line_text').innerText = "OR";
+			document.querySelector('#btn2').value = "Blizzard Free Membership";
+			document.getElementByTagName("a") = "Troubleshooting Login";
 			document.getElementById('button').value = "Recover accounts you left";
 		}
 		
 		function leng_cn() {
 			document.getElementById('id').placeholder = "用戶名";
 			document.getElementById('pw').placeholder = "密碼";
-			document.querySelector('#button1').value = "登錄";
-			document.getElementByclassName('line_text').innerHTML = "或";
-			document.querySelector('#button2').value = "暴雪免費加入會員";
+			document.querySelector('#btn1').value = "登錄";
+			document.getElementByclassName('line_text').innerText = "或";
+			document.querySelector('#btn2').value = "暴雪免費加入會員";
 			document.getElementById('button').value = "解決登錄問題";
 			document.getElementById('button').value = "恢復退出賬戶";
 		}
