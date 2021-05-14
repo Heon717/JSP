@@ -7,13 +7,13 @@
 <title>글쓰기</title>
 </head>
 <body>
-	<div id="wrap">
+	<div>
 		<form action="write" method="post">
 			<div>제목 : <input type="text" name="title"></div>
-			<div>내용 : <textarea cols="30" rows="10" name="ctnt"></textarea></div>
-			<div><input type="submit" value="작성하기"></div>
+			<div>내용 : <textarea name="ctnt"></textarea></div>
+			<div><input type="submit" value="글작성"></div>
 		</form>
-			<a href="list"><button>돌아가기</button></a>
+		<a href="list">뒤로가기</a>
 	</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.koreait.JSPExam3.Board;
+package com.koreait.board5.board;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.koreait.JSPExam3.MyUTL;
+import com.koreait.board5.MyUtils;
 
-@WebServlet("/write")
-public class WriteSlv extends HttpServlet {
+@WebServlet("/board/del")
+public class Delslv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MyUTL.JSPutl("board/write", request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title");
-		String ctnt = request.getParameter("ctnt");
+		String iboard = request.getParameter("iboard");
+		int intiboard = Integer.parseInt(iboard);
 		
 		BoardVO bvo = new BoardVO();
+		bvo.setIboard(intiboard);
+			
+		BoardDAO.delBoard(bvo);
+		
+		response.sendRedirect("list");
 	}
 
 }
