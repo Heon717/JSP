@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.record{ cursor: pointer;}
+.record:hover { background-color: #1abc9c;}
+.record:active{ background-color: skyblue;}
+
+table , th , td { border: 1px solid gray; border-collapse: collapse; padding:10px;}

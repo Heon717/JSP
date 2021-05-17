@@ -20,6 +20,27 @@
 		<div><a href="mod?iboard=${param.iboard}">수정</a></div>
 		<div><a href="del?iboard=${param.iboard}">삭제</a></div>
 	</c:if>
+	
+	<h3>댓글</h3>
+	<div>
+		<form action="regCmt" method="post">
+			<input type="hidden" name="iboard" value="${data.iboard}">
+			<div>
+				<textarea name="cmt" placeholder="댓글내용"></textarea>
+				<input type="submit" value="댓글작성">
+			</div>
+		</form>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th>내용</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>비고</th>
+			</tr>
+		</table>
+	</div>
 	<a href="list">리스트로</a>
 </body>
 </html>
