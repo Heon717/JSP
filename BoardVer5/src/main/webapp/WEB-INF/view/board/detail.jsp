@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${data.title}</title>
+<script type="text/javascript" defer src="/res/js/boardList.js"></script>
 </head>
 <body>
 	<h1>디테일 페이지 ${param.iboard}</h1>
@@ -39,6 +40,19 @@
 				<th>작성일</th>
 				<th>비고</th>
 			</tr>
+			<c:forEach var="it" items="${list}">
+			<tr>
+				<td>${it.cmt}</td>
+				<td>${it.unm}</td>
+				<td>${it.regdate}</td>
+				<td>
+					<c:if test="${loginUser.iuser == it.iuser}">
+						<input type="button" value="수정">
+						<button onclick="delCmt(${data.iboard},${it.icmt})">삭제</button>
+					</c:if>
+				</td>
+			</tr>
+			</c:forEach>
 		</table>
 	</div>
 	<a href="list">리스트로</a>

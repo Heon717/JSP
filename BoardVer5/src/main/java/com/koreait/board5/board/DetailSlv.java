@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.koreait.board5.MyUtils;
+import com.koreait.board5.cmt.CmtDAO;
 
 @WebServlet("/board/detail")
 public class DetailSlv extends HttpServlet {
@@ -20,6 +21,8 @@ public class DetailSlv extends HttpServlet {
 		
 		BoardVO data = BoardDAO.sleBoard(intiboard);
 		request.setAttribute("data", data);
+		
+		request.setAttribute("list", CmtDAO.selListCmt(intiboard));
 		
 		MyUtils.openJSP("board/detail", request, response);
 	}
