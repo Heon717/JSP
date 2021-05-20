@@ -33,18 +33,21 @@ public class CmtResgSrv extends HttpServlet {
 	// insert , update
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmt = request.getParameter("cmt");
+		int icmt = MyUtils.getParamInt("icmt", request);
 		int iboard = MyUtils.getParamInt("iboard", request);
-		
 		int iuser = MyUtils.getLoginUserPK(request);
 			
 		CmtVO cvo = new CmtVO();
-		cvo.setIboard(iboard);
 		cvo.setCmt(cmt);
 		cvo.setIuser(iuser);
 		
-		CmtDAO.insCmt(cvo);
-		
-		response.sendRedirect("detail?iboard="+iboard);
+		if(icmt != 0) {  // 수정
+			cvo.setIcmt(icmt);
+			CmtDAO.updCmt(cvo);
+		} else { // 등록
+			cvo.setIboard(iboard);
+			CmtDAO.insCmt(cvo);
+		}
+		response.sendRedirect("detail?iboard="+iboard);		
 	}
-
 }

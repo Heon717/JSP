@@ -14,12 +14,15 @@ import com.koreait.board5.cmt.CmtDAO;
 public class DetailSlv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String iboard = request.getParameter("iboard");
 		int intiboard = Integer.parseInt(iboard);
+		int iuser = MyUtils.getLoginUserPK(request);
 		
-		BoardVO data = BoardDAO.sleBoard(intiboard);
+		BoardVO data = new BoardVO();
+		data.setIboard(intiboard);
+		data.setIuser(iuser);
+		data = BoardDAO.sleBoard(data);
 		request.setAttribute("data", data);
 		
 		request.setAttribute("list", CmtDAO.selListCmt(intiboard));

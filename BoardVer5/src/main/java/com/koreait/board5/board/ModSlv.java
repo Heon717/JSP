@@ -19,7 +19,8 @@ public class ModSlv extends HttpServlet {
 		String iboard = request.getParameter("iboard");
 		int intiboard = Integer.parseInt(iboard);
 		
-		BoardVO li = BoardDAO.sleBoard(intiboard);
+		BoardVO vo = new BoardVO();
+		BoardVO li = BoardDAO.sleBoard(vo);
 		HttpSession hs = request.getSession();
 		UserVO loginuser = (UserVO) hs.getAttribute("loginUser");
 		// 로그인중인 iuser

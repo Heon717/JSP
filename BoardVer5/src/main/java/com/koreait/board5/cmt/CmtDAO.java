@@ -8,7 +8,9 @@ import java.util.List;
 
 import com.koreait.board5.DBU;
 
-public class CmtDAO {
+
+// select문은 vo insert delete update 는 int or void
+public class CmtDAO { 
 	public static void insCmt(CmtVO vo) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -71,6 +73,26 @@ public class CmtDAO {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1,cvo.getIcmt());
 			ps.setInt(2, cvo.getIboard());
+			
+			return ps.executeUpdate();	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			DBU.close(con, ps);
+		}
+	}
+	
+	public static int updCmt(CmtVO cvo) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = " UPDATE t_board_cmt SET cmt = ? WHERE icmt = ? AND iuser = ? ";
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1,cvo.getCmt());
+			ps.setInt(2,cvo.getIcmt());
+			ps.setInt(3, cvo.getIuser());
 			
 			return ps.executeUpdate();	
 		} catch (Exception e) {
