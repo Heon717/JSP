@@ -1,0 +1,21 @@
+@charset "UTF-8";
+*{
+	text-decoration: none;
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+header nav {
+	position: relative;
+	height: 50px;
+	background-color: #1abc9c;
+}
+
+header nav ul {
+	display: flex;
+}
+
+header nav ul li {
+	margin-left: 20px;
+}
