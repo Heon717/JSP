@@ -124,10 +124,11 @@ public class BoardDAO {
 		ResultSet rs = null;
 		BoardDomain result = null;
 		
-		String sql = " SELECT A.iboard, A.title, A.iuser, A.regdt, "
-				+ "	B.unm as writerNm "
-				+ " FROM t_board A INNER JOIN t_user B "
-				+ " ON A.iuser = B.iuser "
+		String sql = "SELECT B.unm as writerNm"
+				+ "	, A.iuser, A.regdt, A.title, A.ctnt "				
+				+ " FROM t_board A "
+				+ " INNER JOIN t_user B "
+				+ " ON A.iuser = B.iuser"
 				+ " WHERE A.iboard = ? ";
 		
 		try {
@@ -137,21 +138,20 @@ public class BoardDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int iboard = rs.getInt("iboard");
-				
-				// BoardDomain = result 
 				result = new BoardDomain();
+				
 				result.setIboard(param.getIboard());
 				result.setTitle(rs.getString("title"));
 				result.setCtnt(rs.getString("ctnt"));
 				result.setIuser(rs.getInt("iuser"));
 				result.setWriterNm(rs.getString("writerNm"));
+				result.setRegdt(rs.getString("regdt"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBU.close(con, ps);
 		}
-		return null;
+		return result;
 	}
 }
