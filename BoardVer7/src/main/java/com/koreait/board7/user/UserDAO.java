@@ -9,7 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import com.koreait.board7.DBU;
 
 public class UserDAO {
-	// 아이디 있으면 ㅣ 1     없으면 : 0 
+	//중복체크 아이디 있으면 ㅣ 1     없으면 : 0 
 	public static int selIdChk(String uid) {
 		int result = 0;
 		Connection con = null;
