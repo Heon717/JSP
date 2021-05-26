@@ -9,7 +9,7 @@
 <div><c:out value="${requestScope.data.ctnt}"></c:out></div>
 
 <div>
-	<form id="cmtForm" data-iboard="${param.iboard}">
+	<form id="cmtForm" data-loginUser_PK="${sessionScope.loginUser.iuser}" data-iboard="${param.iboard}" onsubmit="return false;">
 		<input type="text" id="cmt">
 		<input type="button" value="댓글달기" onclick="regCmt()">
 	</form>

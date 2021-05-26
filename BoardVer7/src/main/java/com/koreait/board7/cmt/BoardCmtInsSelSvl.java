@@ -25,6 +25,7 @@ public class BoardCmtInsSelSvl extends HttpServlet {
 		String json = gson.toJson(BoardCmtDAO.selBoardCmtList(param));
 		System.out.println("json : "+ json);
 		
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter()
 		.append(json);
 	}

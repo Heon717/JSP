@@ -41,7 +41,8 @@ public class BoardCmtDAO {
 		String sql = " SELECT A.icmt, A.cmt, A.regdate, B.iuser, B.unm AS writerNm "
 				+ " FROM t_board_cmt A INNER JOIN t_user B "
 				+ " ON A.iuser = B.iuser "
-				+ " WHERE A.iboard = ? " ;
+				+ " WHERE A.iboard = ? "
+				+ " ORDER BY A.icmt " ;
 		try {
 			con = DBU.getcon();
 			ps = con.prepareStatement(sql);
@@ -65,5 +66,26 @@ public class BoardCmtDAO {
 		}
 		
 		return list;
+	}
+	
+	public static int delBoardCmt(BoardCmtEntity param) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+													   // 아무나 삭제 못하게
+		String sql = " DELETE FROM t_board_cmt WHERE = ? AND iuser = ? ";
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, param.getIcmt());
+			ps.setInt(2, param.getIuser());
+			
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBU.close(con, ps);
+		}		
+		return result;
 	}
 }
