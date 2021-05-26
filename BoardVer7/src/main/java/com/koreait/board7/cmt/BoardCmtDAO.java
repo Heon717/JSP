@@ -72,7 +72,7 @@ public class BoardCmtDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-													   // 아무나 삭제 못하게
+													   // 아무나 삭제 못하게하기 위해 필요
 		String sql = " DELETE FROM t_board_cmt WHERE = ? AND iuser = ? ";
 		try {
 			con = DBU.getcon();
