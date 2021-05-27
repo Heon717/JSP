@@ -73,19 +73,41 @@ public class BoardCmtDAO {
 		PreparedStatement ps = null;
 		int result = 0;
 													   // 아무나 삭제 못하게하기 위해 필요
-		String sql = " DELETE FROM t_board_cmt WHERE = ? AND iuser = ? ";
+		String sql = " DELETE FROM t_board_cmt WHERE icmt = ? AND iuser = ? ";
 		try {
 			con = DBU.getcon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, param.getIcmt());
 			ps.setInt(2, param.getIuser());
-			
-			ps.executeUpdate();
+			result =ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBU.close(con, ps);
 		}		
+		return result;
+	}
+	
+	public static int updBoardCmt(BoardCmtEntity param) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = " UPDATE t_board_cmt SET cmt = ? WHERE icmt = ? AND iuser = ? ";
+		
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, param.getCmt());
+			ps.setInt(2, param.getIcmt());
+			ps.setInt(3, param.getIuser());
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBU.close(con, ps);
+		}
 		return result;
 	}
 }

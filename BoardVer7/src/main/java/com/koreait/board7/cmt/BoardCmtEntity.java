@@ -34,7 +34,7 @@ public class BoardCmtEntity {
 	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdata) {
+	public void setRegdate(String regdate) {
 		this.regdate= regdate;
 	}
 	

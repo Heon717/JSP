@@ -16,19 +16,42 @@ public class BoardCmtDelUpdSvl extends HttpServlet {
 	// 댓글 삭제
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int icmt = MyUtils.getParamInt("icmt", request);
-		int iuser = MyUtils.getParamInt("iuser", request); 
+		int iuser = MyUtils.getLoginUserPK(request); 
 		//  iuser는 실제로 댓글 쓴사람이 맞는지 알아야하기떄문에 필요
-		
+		System.out.println("iuser"+iuser);
 		BoardCmtEntity param = new BoardCmtEntity();
 		param.setIcmt(icmt);
 		param.setIuser(iuser);
 		
 		int result = BoardCmtDAO.delBoardCmt(param);
+		
+		response.getWriter()
+		.append("{")
+		.append("\"result\":")
+		.append(String.valueOf(result))
+		.append("}")
+		.flush();
 	}
 
 	// 댓글 수정
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		int icmt = MyUtils.getParamInt("icmt", request);
+		String cmt = request.getParameter("cmt");
+		int iuser = MyUtils.getLoginUserPK(request);
+		
+		BoardCmtEntity param = new BoardCmtEntity();
+		param.setIcmt(icmt);
+		param.setCmt(cmt);
+		param.setIuser(iuser);
+		
+		int result = BoardCmtDAO.updBoardCmt(param);
+		
+		response.getWriter()
+		.append("{")
+		.append("\"result\":")
+		.append(String.valueOf(result))
+		.append("}")
+		.flush();
 	}
 
 }
