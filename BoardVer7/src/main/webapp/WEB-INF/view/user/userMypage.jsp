@@ -7,7 +7,7 @@
 			<c:set var="img" value="/res/img/profile.png"/>
 		</c:when>
 		<c:otherwise>
-			<c:set var="img" value="/res/img/user/${sessionScope.loginUser}/${requestScope.user.profileImg}"/>
+			<c:set var="img" value="/res/img/user/${sessionScope.loginUser}/${requestScope.loginUser.profileImg}"/>
 		</c:otherwise>
 	</c:choose>
 	

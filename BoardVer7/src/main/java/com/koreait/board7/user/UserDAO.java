@@ -106,25 +106,55 @@ public class UserDAO {
 		return 0;
 	}
 
-public static int joinUser(UserEntity vo) {
-	Connection con = null;
-	PreparedStatement ps = null;
-	String sql = " INSERT INTO t_user ( uid , upw , unm , gender ) VALUES ( ? , ? , ? , ? )" ;
-	
-	try {
-		con = DBU.getcon();
-		ps = con.prepareStatement(sql);
-		ps.setString(1, vo.getUid());
-		ps.setString(2, vo.getUpw());
-		ps.setString(3, vo.getUnm());
-		ps.setInt(4, vo.getGender());
+	public static int joinUser(UserEntity vo) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = " INSERT INTO t_user ( uid , upw , unm , gender ) VALUES ( ? , ? , ? , ? )" ;
 		
-		return ps.executeUpdate();	
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally {
-		DBU.close(con, ps);
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getUid());
+			ps.setString(2, vo.getUpw());
+			ps.setString(3, vo.getUnm());
+			ps.setInt(4, vo.getGender());
+			
+			return ps.executeUpdate();	
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBU.close(con, ps);
+		}
+		return 0;
 	}
-	return 0;
-}
+	
+	public static int updUser(UserEntity param) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String updString = null;
+		
+		String sql = " UPDATE t_user ";
+		if (param.getUpw() != null && param.getUpw().equals("")) {
+			sql += " SET upw = ? ";
+			updString = param.getUpw();
+		} else if (param.getProfileImg() != null && param.getProfileImg().equals("")) {
+			sql += " SET profileImg = ? ";
+			updString = param.getProfileImg();
+		}
+		sql += " WHERE iuser = ? ";
+		
+		try {
+			con = DBU.getcon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, updString);
+			ps.setInt(2, param.getIuser());
+			
+			return ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			DBU.close(con, ps);
+		}
+	}
 }

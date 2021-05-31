@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="mitv" class="com.spring.first.MiTv">
+		<!--constructor-arg ref="speaker"></constructor-arg-->
+		<property name="speaker" ref="speaker"></property>
+		<!-- name 에 적는것은 class에 있는 멤버필드명 ex) MiTv 의 speaker -->
+	</bean>
+	<bean id="speaker" class="com.spring.first.AppleSpeaker">
+		<constructor-arg value="30"></constructor-arg>
+	</bean>
+</beans>

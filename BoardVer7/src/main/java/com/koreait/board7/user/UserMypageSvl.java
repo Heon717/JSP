@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,7 @@ public class UserMypageSvl extends HttpServlet {
 				"UTF-8",
 				new DefaultFileRenamePolicy());
 		
+		UserEntity loginUser = MyUtils.getLoginUser(request);
 		int loginUserPk = MyUtils.getLoginUserPK(request);
 		
 		String targetFolder = uploadPath + "/user/" + loginUserPk;
@@ -53,6 +55,14 @@ public class UserMypageSvl extends HttpServlet {
 		
 		File imgFile = new File(uploadPath +"/tmep/"+fileNm);
 		imgFile.renameTo(new File(targetFolder+"/"+ newFileNm));
+		
+		UserEntity uet = new UserEntity();
+		uet.setIuser(loginUserPk);
+		uet.setProfileImg(newFileNm);
+		
+		UserDAO.updUser(uet);
+		
+		loginUser.setProfileImg(newFileNm);
 		
 		doGet(request, response);
 	}

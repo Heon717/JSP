@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.koreait.board5.MyUtils;
+import com.koreait.board6.user.UserDAO;
 
 @WebServlet("/user/join")
 public class UserJoinSlv extends HttpServlet {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.koreait.board5.MyUtils;
+import com.koreait.board6.user.UserDAO;
 
 @WebServlet("/user/login")
 public class UserLoginSlv extends HttpServlet {
